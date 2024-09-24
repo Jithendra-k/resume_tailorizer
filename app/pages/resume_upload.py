@@ -1,5 +1,5 @@
 import streamlit as st
-from components.resume_processor import extract_text_from_pdf
+from app.components.resume_processor import extract_text_from_pdf
 
 def show():
     st.title("Upload Your Resume")

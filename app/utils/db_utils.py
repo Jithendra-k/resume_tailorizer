@@ -4,19 +4,13 @@ from chromadb.config import Settings
 
 def get_db_client():
     """Initialize and return a ChromaDB client."""
-    client = chromadb.Client(Settings(
-        chroma_db_impl="duckdb+parquet",
-        persist_directory=os.path.join("data", "processed", "chroma_db")
-    ))
+    persist_directory = os.getenv('CHROMA_DB_PATH', './data/processed/chroma_db')
+    client = chromadb.PersistentClient(path=persist_directory)
     return client
 
 def get_or_create_collection(client, collection_name):
     """Get an existing collection or create a new one if it doesn't exist."""
-    try:
-        collection = client.get_collection(collection_name)
-    except ValueError:
-        collection = client.create_collection(collection_name)
-    return collection
+    return client.get_or_create_collection(collection_name)
 
 def add_documents(collection, documents, metadatas, ids):
     """Add documents to the specified collection."""

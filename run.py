@@ -1,16 +1,16 @@
 import os
-import streamlit as st
 from dotenv import load_dotenv
-from pages import home, resume_upload, tailor_resume
+import streamlit as st
+from app.pages import home, resume_upload, tailor_resume
 
 # Load environment variables
 load_dotenv()
 
-# Access environment variables
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-CHROMA_DB_PATH = os.getenv("CHROMA_DB_PATH")
-LLM_PROVIDER = os.getenv("LLM_PROVIDER")
-LLM_MODEL = os.getenv("LLM_MODEL")
+# Verify GROQ_API_KEY is loaded
+if 'GROQ_API_KEY' in os.environ:
+    print("GROQ_API_KEY found in environment variables")
+else:
+    print("WARNING: GROQ_API_KEY not found in environment variables")
 
 st.set_page_config(page_title="Resume Tailorizer", layout="wide")
 
@@ -32,7 +32,7 @@ def main():
     # Add a footer
     st.sidebar.markdown("---")
     st.sidebar.info(
-        "This app is maintained by Jithendra Katta. "
+        "This app is maintained by [Jithendra Katta]. "
         "Check out our [GitHub](https://github.com/Jithendra-k/resume_tailorizer) page."
     )
 
