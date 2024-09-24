@@ -1,0 +1,29 @@
+# Application Settings
+app:
+  name: "Resume Tailorizer"
+  version: "1.0.0"
+
+# Database Settings
+database:
+  type: "chromadb"
+  path: "./data/processed/chroma_db"
+
+# LLM Settings
+llm:
+  provider: "groq"
+  model: ""
+  api_key: "${GROQ_API_KEY}"
+  fallback:
+    provider: "ollama"
+    model: "llama2"
+
+# Job Scraping Settings
+job_scraper:
+  timeout: 30
+  user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+
+# PDF Generation Settings
+pdf:
+  font: "Helvetica"
+  font_size: 12
+  margin: 72  # 1 inch in points
